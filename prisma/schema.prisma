@@ -6,6 +6,14 @@ datasource db {
   provider = "postgresql"
 }
 
+enum ContentType {
+  TEXT
+  IMAGE
+  VIDEO
+  AUDIO
+  CODE
+}
+
 model User {
   id            String    @id
   name          String
@@ -16,6 +24,8 @@ model User {
   updatedAt     DateTime  @default(now()) @updatedAt
   sessions      Session[]
   accounts      Account[]
+
+  workspaces    Workspace[]
 
   @@unique([email])
   @@map("user")
@@ -64,4 +74,38 @@ model Verification {
   updatedAt  DateTime @default(now()) @updatedAt
 
   @@map("verification")
+}
+
+// Workspace
+model Workspace {
+  id String @id @default(uuid())
+  name String
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  documents Document[] 
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now()) @updatedAt 
+}
+
+// Documents
+model Document {
+  id String @id @default(uuid())
+  title String
+  workspaceId String
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  contentBlocks ContentBlock[]
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now()) @updatedAt 
+}
+
+// Content Blocks
+model ContentBlock {
+  id String @id @default(uuid())
+  type ContentType @default(TEXT)
+  content String
+  order       Int         // position in the document
+  documentId String
+  document Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now()) @updatedAt 
 }
