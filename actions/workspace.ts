@@ -1,10 +1,10 @@
 "use server";
 
-import { createWorkspaceType, deleteWorkspaceType, getWorkspaceByIdType, updateWorkspaceType } from "@/types";
+import { CreateWorkspaceType, DeleteWorkspaceType, GetWorkspaceByIdType, UpdateWorkspaceType } from "@/types";
 import { currentUser } from "./auth";
 import client from "@/lib/db";
 
-export const createWorkspace = async ({ name }: createWorkspaceType) => {
+export const createWorkspace = async ({ name }: CreateWorkspaceType) => {
     const user = await currentUser();
 
     if (!user) {
@@ -26,7 +26,7 @@ export const createWorkspace = async ({ name }: createWorkspaceType) => {
             message: "Workspace created successfully"
         }
     } catch (e) {
-        console.error("Error fetching current user:", e);
+        console.error(e);
         return {
             sucess: false,
             error: "failed to create workspace"
@@ -34,7 +34,7 @@ export const createWorkspace = async ({ name }: createWorkspaceType) => {
     }
 };
 
-export const updateWorkspace = async ({ name, workspaceId }: updateWorkspaceType) => {
+export const updateWorkspace = async ({ name, workspaceId }: UpdateWorkspaceType) => {
     const user = await currentUser();
 
     if (!user) {
@@ -59,7 +59,7 @@ export const updateWorkspace = async ({ name, workspaceId }: updateWorkspaceType
             message: "Workspace updated successfully"
         }
     } catch (e) {
-        console.error("Error fetching current user:", e);
+        console.error(e);
         return {
             sucess: false,
             error: "failed to update workspace"
@@ -67,7 +67,7 @@ export const updateWorkspace = async ({ name, workspaceId }: updateWorkspaceType
     }
 }
 
-export const deleteWorkpace = async ({ workspaceId }: deleteWorkspaceType) => {
+export const deleteWorkspace = async ({ workspaceId }: DeleteWorkspaceType) => {
     const user = await currentUser();
 
     if (!user) {
@@ -89,7 +89,7 @@ export const deleteWorkpace = async ({ workspaceId }: deleteWorkspaceType) => {
             message: "Workspace deleted successfully"
         }
     } catch (e) {
-        console.error("Error fetching current user:", e);
+        console.error(e);
         return {
             sucess: false,
             error: "failed to delete workspace"
@@ -97,7 +97,7 @@ export const deleteWorkpace = async ({ workspaceId }: deleteWorkspaceType) => {
     }
 }
 
-export const getAllWorkpace = async () => {
+export const getAllWorkspace = async () => {
     const user = await currentUser();
 
     if (!user) {
@@ -132,7 +132,7 @@ export const getAllWorkpace = async () => {
             workspaces: get,
         }
     } catch (e) {
-        console.error("Error fetching current user:", e);
+        console.error(e);
         return {
             sucess: false,
             error: "failed to fetched workspace"
@@ -140,7 +140,7 @@ export const getAllWorkpace = async () => {
     }
 };
 
-export const getWorkspaceById = async ({ workspaceId }: getWorkspaceByIdType) => {
+export const getWorkspaceById = async ({ workspaceId }: GetWorkspaceByIdType) => {
     const user = await currentUser();
 
     if (!user) {
@@ -176,7 +176,7 @@ export const getWorkspaceById = async ({ workspaceId }: getWorkspaceByIdType) =>
             workspace: get,
         }
     } catch (e) {
-        console.error("Error fetching current user:", e);
+        console.error(e);
         return {
             sucess: false,
             error: "failed to fetched workspace"

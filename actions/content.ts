@@ -2,10 +2,10 @@
 
 import client from "@/lib/db";
 import { currentUser } from "./auth";
-import { createContentType, GetContentByDocumentIdAndContentIdType, GetContentByDocumentIdTypes, updateContentType } from "@/types";
+import { CreateContentType, DeleteContentType, GetContentByDocumentIdAndContentIdType, GetContentByDocumentIdType, UpdateContentType } from "@/types";
 import { error } from "console";
 
-export const createcontent = async ({ documentId, content, contentType }: createContentType) => {
+export const createContent = async ({ documentId, content, contentType }: CreateContentType) => {
     const user = await currentUser();
 
     if (!user) {
@@ -51,7 +51,7 @@ export const createcontent = async ({ documentId, content, contentType }: create
             message: "Content created successfully"
         }
     } catch (e) {
-        console.error("Error fetching current user:", e);
+        console.error(e);
         return {
             sucess: false,
             error: "failed to create content"
@@ -59,7 +59,7 @@ export const createcontent = async ({ documentId, content, contentType }: create
     }
 };
 
-export const updateContent = async ({ contentId, content }: updateContentType) => {
+export const updateContent = async ({ contentId, content }: UpdateContentType) => {
     const user = await currentUser();
 
     if (!user) {
@@ -84,7 +84,7 @@ export const updateContent = async ({ contentId, content }: updateContentType) =
             message: "Content updated successfully"
         }
     } catch (e) {
-        console.error("Error updating content:", e);
+        console.error(e);
         return {
             success: false,
             error: "failed to update content"
@@ -92,7 +92,7 @@ export const updateContent = async ({ contentId, content }: updateContentType) =
     }
 }
 
-export const deleteContent = async (contentId: string) => {
+export const deleteContent = async ({ contentId }: DeleteContentType) => {
     const user = await currentUser();
 
     if (!user) {
@@ -113,7 +113,7 @@ export const deleteContent = async (contentId: string) => {
             message: "Content deleted successfully"
         }
     } catch (e) {
-        console.error("Error deleting content:", e);
+        console.error(e);
         return {
             success: false,
             error: "failed to delete content"
@@ -121,7 +121,7 @@ export const deleteContent = async (contentId: string) => {
     }
 };
 
-export const getContentByDocumentId = async ({ documentId }: GetContentByDocumentIdTypes) => {
+export const getContentByDocumentId = async ({ documentId }: GetContentByDocumentIdType) => {
     const user = await currentUser();
     if (!user) {
         return {
@@ -150,7 +150,7 @@ export const getContentByDocumentId = async ({ documentId }: GetContentByDocumen
             data: contents
         }
     } catch (e) {
-        console.error("Error fetching contents:", e);
+        console.error(e);
         return {
             success: false,
             error: "failed to fetch contents"
@@ -188,7 +188,7 @@ export const getContentByDocumentIdAndContentId = async ({ documentId, contentId
             data: contents
         }
     } catch (e) {
-        console.error("Error fetching contents:", e);
+        console.error(e);
         return {
             success: false,
             error: "failed to fetch contents"

@@ -3,6 +3,7 @@
 import client from "@/lib/db";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import { UpdateUserType } from "@/types";
 
 export const currentUser = async () => {
   try {
@@ -32,5 +33,39 @@ export const currentUser = async () => {
   } catch (error) {
     console.error("Error fetching current user:", error);
     return null;
+  }
+};
+
+export const updateUser = async ({ name, imageUrl }: UpdateUserType) => {
+  const user = await currentUser();
+
+  if (!user) {
+    return {
+      success: false,
+      error: "failed to updated user"
+    }
+  }
+
+  try {
+    const updateUser = await client.user.update({
+      where: {
+        id: user?.id
+      },
+      data: {
+        name: name,
+        image: imageUrl
+      }
+    });
+
+    return {
+      success: true,
+      message: "User updated successfully"
+    }
+  } catch (e) {
+    console.log(e);
+    return {
+      success: false,
+      error: "failed to update user"
+    }
   }
 };

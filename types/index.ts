@@ -1,55 +1,58 @@
 import { ContentType } from "@prisma/client";
 
 // Workspaces
-export interface createWorkspaceType {
+export interface CreateWorkspaceType {
     name: string
 }
 
-export interface updateWorkspaceType {
+export interface UpdateWorkspaceType {
     name: string;
     workspaceId: string;
 }
 
-export interface deleteWorkspaceType {
+export interface DeleteWorkspaceType {
     workspaceId: string;
 }
 
-export interface getWorkspaceByIdType {
+export interface GetWorkspaceByIdType {
     workspaceId: string;
 }
 
 // Documents
-export interface createDocumentType {
+export interface CreateDocumentType {
     title: string;
     workspaceId: string;
 }
 
-export interface getAllDocumentsType {
+export interface GetAllDocumentsType {
     workspaceId: string;
 }
 
-export interface deleteDocumentType {
-    id: string;
+export interface DeleteDocumentType {
+    documentId: string;
     workspaceId: string;
 }
 
-export interface updateDocumentType {
+export interface UpdateDocumentType {
     documentId: string;
     workspaceId: string;
     title: string;
 }
 
 // Content
-export interface createContentType {
+export interface CreateContentType {
     documentId: string;
-    contentId: string;
     content: string;
     contentType: ContentType
 }
 
-export interface updateContentType {
+export interface UpdateContentType {
     contentId: string;
     content: string;
+}
+
+export interface DeleteContentType {
+    contentId: string
 }
 
 export interface GetContentByDocumentIdAndContentIdType {
@@ -57,6 +60,12 @@ export interface GetContentByDocumentIdAndContentIdType {
     contentId: string;
 }
 
-export interface GetContentByDocumentIdTypes {
+export interface GetContentByDocumentIdType {
     documentId: string;
+}
+
+// User
+export interface UpdateUserType {
+    name: string;
+    imageUrl: string;
 }

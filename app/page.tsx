@@ -1,6 +1,5 @@
 import { currentUser } from '@/actions/auth'
 import UserButton from '@/components/auth/user-button';
-import React from 'react'
 
 const Home = async () => {
   const user = await currentUser();
