@@ -1,10 +1,10 @@
 "use server";
 
-import { createDocumentType, deleteDocumentType, getAllDocumentsType, updateDocumentType } from "@/types";
+import { CreateDocumentType, DeleteDocumentType, GetAllDocumentsType, UpdateDocumentType } from "@/types";
 import { currentUser } from "./auth";
 import client from "@/lib/db";
 
-export const createDocument = async ({ title, workspaceId }: createDocumentType) => {
+export const createDocument = async ({ title, workspaceId }: CreateDocumentType) => {
     const user = await currentUser();
 
     if (!user) {
@@ -34,7 +34,7 @@ export const createDocument = async ({ title, workspaceId }: createDocumentType)
     }
 };
 
-export const deleteDocument = async ({ documentId, workspaceId }: deleteDocumentType) => {
+export const deleteDocument = async ({ documentId, workspaceId }: DeleteDocumentType) => {
     const user = await currentUser();
 
     if (!user) {
@@ -64,7 +64,7 @@ export const deleteDocument = async ({ documentId, workspaceId }: deleteDocument
     }
 };
 
-export const updateDocument = async ({ documentId, workspaceId, title }: updateDocumentType) => {
+export const updateDocument = async ({ documentId, workspaceId, title }: UpdateDocumentType) => {
     const user = await currentUser();
 
     if (!user) {
@@ -97,7 +97,7 @@ export const updateDocument = async ({ documentId, workspaceId, title }: updateD
     }
 };
 
-export const getAllDocuments = async ({ workspaceId }: getAllDocumentsType) => {
+export const getAllDocuments = async ({ workspaceId }: GetAllDocumentsType) => {
     const user = await currentUser();
 
     if (!user) {

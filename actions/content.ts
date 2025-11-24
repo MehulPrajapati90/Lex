@@ -2,10 +2,10 @@
 
 import client from "@/lib/db";
 import { currentUser } from "./auth";
-import { createContentType, deleteContentType, GetContentByDocumentIdAndContentIdType, GetContentByDocumentIdType, updateContentType } from "@/types";
+import { CreateContentType, DeleteContentType, GetContentByDocumentIdAndContentIdType, GetContentByDocumentIdType, UpdateContentType } from "@/types";
 import { error } from "console";
 
-export const createContent = async ({ documentId, content, contentType }: createContentType) => {
+export const createContent = async ({ documentId, content, contentType }: CreateContentType) => {
     const user = await currentUser();
 
     if (!user) {
@@ -59,7 +59,7 @@ export const createContent = async ({ documentId, content, contentType }: create
     }
 };
 
-export const updateContent = async ({ contentId, content }: updateContentType) => {
+export const updateContent = async ({ contentId, content }: UpdateContentType) => {
     const user = await currentUser();
 
     if (!user) {
@@ -92,7 +92,7 @@ export const updateContent = async ({ contentId, content }: updateContentType) =
     }
 }
 
-export const deleteContent = async ({ contentId }: deleteContentType) => {
+export const deleteContent = async ({ contentId }: DeleteContentType) => {
     const user = await currentUser();
 
     if (!user) {
