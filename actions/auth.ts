@@ -1,6 +1,6 @@
 "use server";
 
-import db from "@/lib/db";
+import client from "@/lib/db";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 
@@ -14,7 +14,7 @@ export const currentUser = async () => {
       return null;
     }
 
-    const user = await db.user.findUnique({
+    const user = await client.user.findUnique({
       where: {
         id: session.user.id
       },

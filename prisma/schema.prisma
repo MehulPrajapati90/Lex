@@ -84,7 +84,10 @@ model Workspace {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   documents Document[] 
   createdAt  DateTime @default(now())
-  updatedAt  DateTime @default(now()) @updatedAt 
+  updatedAt  DateTime @default(now()) @updatedAt
+
+  @@index([userId, id])
+  @@index([userId])
 }
 
 // Documents
@@ -95,7 +98,10 @@ model Document {
   workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
   contentBlocks ContentBlock[]
   createdAt  DateTime @default(now())
-  updatedAt  DateTime @default(now()) @updatedAt 
+  updatedAt  DateTime @default(now()) @updatedAt
+
+  @@index([workspaceId, id])
+  @@index([workspaceId])
 }
 
 // Content Blocks
@@ -107,5 +113,8 @@ model ContentBlock {
   documentId String
   document Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
   createdAt  DateTime @default(now())
-  updatedAt  DateTime @default(now()) @updatedAt 
+  updatedAt  DateTime @default(now()) @updatedAt
+
+  @@index([documentId, id])
+  @@index([documentId])
 }
