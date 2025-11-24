@@ -34,7 +34,7 @@ export const createDocument = async ({ title, workspaceId }: createDocumentType)
     }
 };
 
-export const deleteDocument = async ({ id, workspaceId }: deleteDocumentType) => {
+export const deleteDocument = async ({ documentId, workspaceId }: deleteDocumentType) => {
     const user = await currentUser();
 
     if (!user) {
@@ -46,7 +46,7 @@ export const deleteDocument = async ({ id, workspaceId }: deleteDocumentType) =>
     try {
         const update = await client.document.delete({
             where: {
-                id: id,
+                id: documentId,
                 workspaceId: workspaceId
             },
         });

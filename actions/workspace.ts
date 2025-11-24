@@ -67,7 +67,7 @@ export const updateWorkspace = async ({ name, workspaceId }: updateWorkspaceType
     }
 }
 
-export const deleteWorkpace = async ({ workspaceId }: deleteWorkspaceType) => {
+export const deleteWorkspace = async ({ workspaceId }: deleteWorkspaceType) => {
     const user = await currentUser();
 
     if (!user) {
@@ -97,7 +97,7 @@ export const deleteWorkpace = async ({ workspaceId }: deleteWorkspaceType) => {
     }
 }
 
-export const getAllWorkpace = async () => {
+export const getAllWorkspace = async () => {
     const user = await currentUser();
 
     if (!user) {

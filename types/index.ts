@@ -29,7 +29,7 @@ export interface getAllDocumentsType {
 }
 
 export interface deleteDocumentType {
-    id: string;
+    documentId: string;
     workspaceId: string;
 }
 
@@ -42,7 +42,6 @@ export interface updateDocumentType {
 // Content
 export interface createContentType {
     documentId: string;
-    contentId: string;
     content: string;
     contentType: ContentType
 }
@@ -52,11 +51,15 @@ export interface updateContentType {
     content: string;
 }
 
+export interface deleteContentType {
+    contentId: string
+}
+
 export interface GetContentByDocumentIdAndContentIdType {
     documentId: string;
     contentId: string;
 }
 
-export interface GetContentByDocumentIdTypes {
+export interface GetContentByDocumentIdType {
     documentId: string;
 }
