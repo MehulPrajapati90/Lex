@@ -28,7 +28,7 @@ export const createcontent = async ({ documentId, content, contentType }: create
             }
         });
 
-        const orderValue = prevContent?.[0]?.order ? prevContent?.[0]?.order : 1
+        const orderValue = prevContent?.[0]?.order ? Number(prevContent?.[0]?.order) + 1 : 1;
 
         const create = await client.contentBlock.create({
             data: {
