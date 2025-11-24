@@ -26,7 +26,7 @@ export const createWorkspace = async ({ name }: createWorkspaceType) => {
             message: "Workspace created successfully"
         }
     } catch (e) {
-        console.error("Error fetching current user:", e);
+        console.error(e);
         return {
             sucess: false,
             error: "failed to create workspace"
@@ -59,7 +59,7 @@ export const updateWorkspace = async ({ name, workspaceId }: updateWorkspaceType
             message: "Workspace updated successfully"
         }
     } catch (e) {
-        console.error("Error fetching current user:", e);
+        console.error(e);
         return {
             sucess: false,
             error: "failed to update workspace"
@@ -89,7 +89,7 @@ export const deleteWorkspace = async ({ workspaceId }: deleteWorkspaceType) => {
             message: "Workspace deleted successfully"
         }
     } catch (e) {
-        console.error("Error fetching current user:", e);
+        console.error(e);
         return {
             sucess: false,
             error: "failed to delete workspace"
@@ -132,7 +132,7 @@ export const getAllWorkspace = async () => {
             workspaces: get,
         }
     } catch (e) {
-        console.error("Error fetching current user:", e);
+        console.error(e);
         return {
             sucess: false,
             error: "failed to fetched workspace"
@@ -176,7 +176,7 @@ export const getWorkspaceById = async ({ workspaceId }: getWorkspaceByIdType) =>
             workspace: get,
         }
     } catch (e) {
-        console.error("Error fetching current user:", e);
+        console.error(e);
         return {
             sucess: false,
             error: "failed to fetched workspace"

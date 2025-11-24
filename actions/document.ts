@@ -26,7 +26,7 @@ export const createDocument = async ({ title, workspaceId }: createDocumentType)
             message: "Document created successfully"
         }
     } catch (e) {
-        console.error("Error fetching current user:", e);
+        console.error(e);
         return {
             sucess: false,
             error: "failed to create document"
@@ -56,7 +56,7 @@ export const deleteDocument = async ({ documentId, workspaceId }: deleteDocument
             message: "Document deleted successfully"
         }
     } catch (e) {
-        console.error("Error fetching current user:", e);
+        console.error(e);
         return {
             sucess: false,
             error: "failed to delete documents"
@@ -89,7 +89,7 @@ export const updateDocument = async ({ documentId, workspaceId, title }: updateD
             message: "Document updated successfully"
         }
     } catch (e) {
-        console.error("Error fetching current user:", e);
+        console.error(e);
         return {
             sucess: false,
             error: "failed to update documents"
@@ -136,7 +136,7 @@ export const getAllDocuments = async ({ workspaceId }: getAllDocumentsType) => {
             documents: get,
         }
     } catch (e) {
-        console.error("Error fetching current user:", e);
+        console.error(e);
         return {
             sucess: false,
             error: "failed to fetched workspace"

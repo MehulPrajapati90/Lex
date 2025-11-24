@@ -51,7 +51,7 @@ export const createContent = async ({ documentId, content, contentType }: create
             message: "Content created successfully"
         }
     } catch (e) {
-        console.error("Error fetching current user:", e);
+        console.error(e);
         return {
             sucess: false,
             error: "failed to create content"
@@ -84,7 +84,7 @@ export const updateContent = async ({ contentId, content }: updateContentType) =
             message: "Content updated successfully"
         }
     } catch (e) {
-        console.error("Error updating content:", e);
+        console.error(e);
         return {
             success: false,
             error: "failed to update content"
@@ -113,7 +113,7 @@ export const deleteContent = async ({ contentId }: deleteContentType) => {
             message: "Content deleted successfully"
         }
     } catch (e) {
-        console.error("Error deleting content:", e);
+        console.error(e);
         return {
             success: false,
             error: "failed to delete content"
@@ -150,7 +150,7 @@ export const getContentByDocumentId = async ({ documentId }: GetContentByDocumen
             data: contents
         }
     } catch (e) {
-        console.error("Error fetching contents:", e);
+        console.error(e);
         return {
             success: false,
             error: "failed to fetch contents"
@@ -188,7 +188,7 @@ export const getContentByDocumentIdAndContentId = async ({ documentId, contentId
             data: contents
         }
     } catch (e) {
-        console.error("Error fetching contents:", e);
+        console.error(e);
         return {
             success: false,
             error: "failed to fetch contents"
